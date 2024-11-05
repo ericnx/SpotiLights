@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import {Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import AppStyles from './App.module.css';
-import SongCover from './components/SongCover';
-import SongDetails from './components/SongDetails';
+import Title from './Title';
 import Login from './Login';
 
 export default function App() {
     return (
-      <>
-        <h1><b>SpotiLights</b></h1>
+      <Container 
+        className='d-flex justify-content-center align-items-center flex-column'
+        style={{minHeight:'100vh'}}
+      >
+        <Title/>    
         <Login/>
-      </>
+      </Container>
     )
     // const [song, setSong] = useState(null);
     // const [accessToken, setAccessToken] = useState('');
