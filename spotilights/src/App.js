@@ -1,16 +1,12 @@
 import {Container} from 'react-bootstrap';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Login from './Login';
+import Dashboard from './Dashboard';
+
+const code = new URLSearchParams(window.location.search).get('code');
 
 export default function App() {
-    return (
-      <Container 
-        className='d-flex justify-content-center align-items-center flex-column vh-100 text-center'
-      >
-        <h1><b>SpotiLights</b></h1> 
-        <p>Enjoy your music's lights.</p> 
-        <Login/>
-      </Container>
-    )
+    return code ? <Dashboard code={code}/> : <Login/>
 }
 
