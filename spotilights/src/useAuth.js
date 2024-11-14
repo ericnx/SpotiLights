@@ -6,11 +6,21 @@ export default function useAuth(code){
     const [refreshToken, setRefreshToken] = useState();
     const [expiresIn, setExpiresIn] = useState();
 
-    useEffect(() => {
+    useEffect(function() {
         axios.post('http://localhost:3001/login', {
             code,
-        }).then(res => {
-            console.log(res.data);
+        }).then(function(res) {
+            setAccessToken(res.data.accessToken);
+            setRefreshToken(res.data.refreshToken);
+            setExpiresIn(res.data.expiresIn);
+        }).catch(function() {
+            // window.location = "/";
         })
     }, [code])
+
+    useEffect(function() {
+        
+    }, [refreshToken, expiresIn])
+
+    return accessToken;
 }

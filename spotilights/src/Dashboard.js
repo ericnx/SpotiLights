@@ -6,7 +6,7 @@ export default function Dashboard({code}){
     const accessToken = useAuth(code);
      return (
         <Container>
-            <h1>{code}</h1>
+            {code}
         </Container>
      );
 }

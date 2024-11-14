@@ -26,10 +26,27 @@ app.post('./login', function(req,res){
                 expiresIn: data.body.expires_in
             })
         })
-        .catch((error) => {
+        .catch(function(error) {
             console.log(error);
             res.sendStatus(400);
         })
 
     app.listen(3001);
+})
+
+app.post('./refresh', function(req,res){
+    const refreshToken = req.body.refreshToken;
+    const spotifyWebApi = new SpotifyWebApi({
+        clientId: dotenv.CLIENT_ID,
+        clientSecret: dotenv.CLIENT_SECRET,
+        redirectUri: dotenv.REDIRECT_URI,
+        refreshToken
+    });
+
+    spotifyWebApi.refreshAccessToken().then(function(data) {
+        console.log(data.body);
+        // spotifyWebApi.setAccessToken(data.body['access_token']);
+    }).catch(function(error){
+        res.sendStatus(400);
+    })
 })
